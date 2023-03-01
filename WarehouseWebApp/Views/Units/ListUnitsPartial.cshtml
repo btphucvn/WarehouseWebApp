@@ -1,0 +1,95 @@
+﻿@model dynamic
+<table class="table table-hover e-commerce-table">
+    <thead>
+        <tr>
+
+            <th>ID</th>
+            <th>Tên đơn vị</th>
+            <th>Tên công ty</th>
+            <th>Số điện thoại</th>
+            <th>Email</th>
+            <th>Fax</th>
+            <th>Address</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Units != null)
+        {
+            foreach (Unit item in Model.Units)
+            {
+                <tr>
+
+                    <td>
+                        @item.UnitId
+                    </td>
+                    <td>@item.UnitName</td>
+                    <td>
+                        @if (item.Company != null)
+                        {
+                            @item.Company.CompanyName
+
+                        }
+                    </td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td>@item.Fax</td>
+                    <td>@item.Address</td>
+                    <td>
+                        <a class="btn btn-secondary btn-tone m-r-5" asp-controller="Units" asp-action="Edit" asp-route-id="@item.UnitId">
+                            <i class="anticon anticon-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+@if (Model.NumberOfPage != null)
+{
+    <div class="pagination">
+        @if (Model.Search != "")
+        {
+            <a href="?page=1&search=@Model.Search">&laquo;</a>
+        }
+        else
+        {
+            <a href="?page=1">&laquo;</a>
+        }
+        @for (int i = 1; i <= Model.NumberOfPage; i++)
+        {
+
+            @if (i != Model.CurrentPage)
+            {
+                @if (Model.Search != "")
+                {
+                    <a href="?page=@i&search=@Model.Search">@i</a>
+                }
+                else
+                {
+                    <a href="?page=@i">@i</a>
+                }
+            }
+            else
+            {
+                @if (Model.Search != null)
+                {
+                    <a class="active" href="?page=@i&search=@Model.Search">@i</a>
+                }
+                else
+                {
+                    <a class="active" href="?page=@i">@i</a>
+                }
+            }
+        }
+        @if (Model.Search != "")
+        {
+            <a href="?page=@Model.NumberOfPage&search=@Model.Search">&raquo;</a>
+        }
+        else
+        {
+            <a href="?page=@Model.NumberOfPage">&raquo;</a>
+        }
+    </div>
+}

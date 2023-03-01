@@ -1,0 +1,58 @@
+﻿@model WarehouseWebApp.Models.Groupgood
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2 class="header-title">Orders List</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Groupgoods" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-controller="Groupgoods" asp-action="Index">Danh sách nhóm hàng hóa</a>
+            <span class="breadcrumb-item active">Sửa nhóm hàng hóa</span>
+        </nav>
+    </div>
+</div>
+<div class="row m-b-30">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 text-right">
+        <form asp-action="Delete" asp-route-id="@Model.GroupGoodId" method="post"
+              onclick="return confirm('Are you sure you want to delete this?')">
+            <button type="submit" class="btn btn-danger btn-tone m-r-5">Xóa</button>
+        </form>
+    </div>
+</div>
+<form asp-controller="Groupgoods" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="GroupGoodId" />
+
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="GroupName">Tên nhóm hàng hóa:</label>
+                        <input type="text" class="form-control" asp-for="GroupName">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="anticon anticon-plus-circle"></i>
+                        <span>Lưu</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+

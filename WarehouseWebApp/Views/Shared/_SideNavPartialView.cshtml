@@ -1,0 +1,71 @@
+﻿<div class="side-nav">
+    <div class="side-nav-inner">
+        <ul class="side-nav-menu scrollable">
+            <li class="nav-item dropdown open">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-build"></i>
+                    </span>
+                    <span class="title">Quản lý hàng hóa</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+
+                        <a asp-controller="Goods" asp-action="Index">
+                            <i class="anticon anticon-switcher"></i>
+                            Quản lý hàng hóa
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Groupgoods" asp-action="Index"><i class="anticon anticon-wallet"></i> Quản lý nhóm hàng hóa</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Suppliers" asp-action="Index"><i class="anticon anticon-deployment-unit"></i> Quản lý nhà cung cấp</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Origins" asp-action="Index"><i class="anticon anticon-branches"></i> Quản lý nguồn gốc</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Companies" asp-action="Index"><i class="anticon anticon-database"></i> Quản lý công ty</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Units" asp-action="Index"><i class="anticon anticon-switcher"></i> Quản lý đơn vị</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Unitcounts" asp-action="Index"><i class="anticon anticon-calculator"></i> Quản lý đơn vị tính</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown open">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-build"></i>
+                    </span>
+                    <span class="title">Quản lý chứng từ</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+
+                        <a asp-controller="Documents" asp-action="Index">
+                            <i class="anticon anticon-file-text"></i>
+                            Phiếu nhập mua
+                        </a>
+                    </li>
+                    <li>
+
+                        <a asp-controller="InternalExportDocuments" asp-action="Index">
+                            <i class="anticon anticon-file-text"></i>
+                            Phiếu xuất hàng nội bộ
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

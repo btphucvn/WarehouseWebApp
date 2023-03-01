@@ -1,0 +1,75 @@
+﻿@model WarehouseWebApp.Models.Inventory
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Inventory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="YearPeriod" class="control-label"></label>
+                <input asp-for="YearPeriod" class="form-control" />
+                <span asp-validation-for="YearPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Period" class="control-label"></label>
+                <input asp-for="Period" class="form-control" />
+                <span asp-validation-for="Period" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitId" class="control-label"></label>
+                <select asp-for="UnitId" class ="form-control" asp-items="ViewBag.UnitId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityFirst" class="control-label"></label>
+                <input asp-for="QuantityFirst" class="form-control" />
+                <span asp-validation-for="QuantityFirst" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityInput" class="control-label"></label>
+                <input asp-for="QuantityInput" class="form-control" />
+                <span asp-validation-for="QuantityInput" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityOutput" class="control-label"></label>
+                <input asp-for="QuantityOutput" class="form-control" />
+                <span asp-validation-for="QuantityOutput" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityLast" class="control-label"></label>
+                <input asp-for="QuantityLast" class="form-control" />
+                <span asp-validation-for="QuantityLast" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPrice" class="control-label"></label>
+                <input asp-for="TotalPrice" class="form-control" />
+                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCalculate" class="control-label"></label>
+                <input asp-for="DateCalculate" class="form-control" />
+                <span asp-validation-for="DateCalculate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

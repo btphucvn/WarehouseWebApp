@@ -1,0 +1,90 @@
+﻿@model IEnumerable<WarehouseWebApp.Models.Inventory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.YearPeriod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Period)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityFirst)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityInput)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityOutput)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityLast)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCalculate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearPeriod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Period)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityFirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityInput)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityOutput)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityLast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCalculate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit.UnitId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.InventoryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.InventoryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.InventoryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,108 @@
+﻿@model dynamic
+<table class="table table-hover e-commerce-table">
+    <thead>
+        <tr>
+
+            <th>Barcode</th>
+            <th>Tên hàng hóa</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng tiền</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Documentdetails != null)
+        {
+            foreach (Documentdetail item in Model.Documentdetails)
+            {
+                <tr>
+
+                    <td>
+                        @if (@item.Barcode != null)
+                        {
+                            @item.Barcode
+                        }
+                    </td>
+                    <td>
+                        @if (item.BarcodeNavigation != null)
+                        {
+                            @item.BarcodeNavigation.CategoryName
+                        }
+                    </td>
+                    <td>
+                        @if (@item.Quantity != null)
+                        {
+                            @item.Quantity
+                        }
+                    </td>
+                    <td>
+                        @if (@item.Price != null)
+                        {
+                            @item.BarcodeNavigation.Price
+                        }
+                    </td>
+                    <td>
+                        @if (@item.TotalAmount != null)
+                        {
+                            @item.TotalAmount
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary btn-tone m-r-5" asp-controller="Documentdetails" asp-action="Edit" asp-route-id="@item.DocumentDetailId">
+                            <i class="anticon anticon-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+@if (Model.NumberOfPage != null)
+{
+    <div class="pagination">
+        @if (Model.Search != "")
+        {
+            <a href="?page=1&search=@Model.Search">&laquo;</a>
+        }
+        else
+        {
+            <a href="?page=1">&laquo;</a>
+        }
+        @for (int i = 1; i <= Model.NumberOfPage; i++)
+        {
+
+            @if (i != Model.CurrentPage)
+            {
+                @if (Model.Search != "")
+                {
+                    <a href="?page=@i&search=@Model.Search">@i</a>
+                }
+                else
+                {
+                    <a href="?page=@i">@i</a>
+                }
+            }
+            else
+            {
+                @if (Model.Search != null)
+                {
+                    <a class="active" href="?page=@i&search=@Model.Search">@i</a>
+                }
+                else
+                {
+                    <a class="active" href="?page=@i">@i</a>
+                }
+            }
+        }
+        @if (Model.Search != "")
+        {
+            <a href="?page=@Model.NumberOfPage&search=@Model.Search">&raquo;</a>
+        }
+        else
+        {
+            <a href="?page=@Model.NumberOfPage">&raquo;</a>
+        }
+    </div>
+}

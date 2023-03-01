@@ -1,0 +1,76 @@
+﻿@model WarehouseWebApp.Models.Good
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2 class="header-title">Orders List</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Goods" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="Goods" asp-action="Index">Danh sách hàng hóa</a>
+            <span class="breadcrumb-item active">Tạo mới hàng hóa</span>
+        </nav>
+    </div>
+</div>
+<form asp-controller="Goods" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+    </div>
+    <input type="text" hidden class="form-control" asp-for="Barcode" value="1">
+
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="CategoryName">Tên danh mục hàng hóa:</label>
+                        <input type="text" class="form-control" asp-for="CategoryName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="CategoryShortName">Tên viết tắt danh mục hàng hóa:</label>
+                        <input type="text" class="form-control" asp-for="CategoryShortName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="UnitId">Đơn vị:</label>
+                        <select class="custom-select" asp-for="UnitId" asp-items="ViewBag.Units">
+                            <option value="" disabled selected>Chọn đơn vị</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Price">Giá:</label>
+                        <input type="number" class="form-control" asp-for="Price">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="SupplierId">Đơn vị:</label>
+                        <select class="custom-select" asp-for="SupplierId" asp-items="ViewBag.Suppliers">
+                            <option value="" disabled selected>Chọn nhà cung cấp</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="OriginId">Nguồn gốc:</label>
+                        <select class="custom-select" asp-for="OriginId" asp-items="ViewBag.Origins">
+                            <option value="" disabled selected>Chọn nguồn gốc</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="GroupGoodId">Nhóm hàng hóa:</label>
+                        <select class="custom-select" asp-for="GroupGoodId" asp-items="ViewBag.GroupGoods">
+                            <option value="" disabled selected>Chọn nhóm hàng hóa</option>
+                        </select>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="anticon anticon-plus-circle"></i>
+                        <span>Tạo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

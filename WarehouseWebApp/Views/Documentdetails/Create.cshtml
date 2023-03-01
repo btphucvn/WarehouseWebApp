@@ -1,0 +1,125 @@
+﻿@model WarehouseWebApp.Models.Documentdetail
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2 class="header-title">Orders List</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-controller="DocumentDetails" asp-action="Index" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Home
+            </a>
+            <a class="breadcrumb-item" asp-controller="DocumentDetails" asp-action="Index">Danh sách phiếu mua</a>
+            <span class="breadcrumb-item active">Tạo mới phiếu mua</span>
+        </nav>
+    </div>
+</div>
+<input type="text" asp-for="DocumentId" hidden value="@Model.DocumentId" />
+<div class="tab-content m-t-15">
+    <div class="tab-pane fade show active" id="product-edit-basic">
+        <div class="card">
+            <form asp-controller="DocumentDetails" asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger">
+                </div>
+                <input type="text" class="form-control" asp-for="DocumentId" hidden />
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Barcode">Hàng hóa:</label>
+                        <select onchange="selectGoodChange(this)" class="custom-select" asp-for="Barcode" asp-items="ViewBag.Goods">
+                            <option value="" disabled selected>Chọn đơn vị</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Price">Giá:</label>
+                        <input type="number" class="form-control" asp-for="Price">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Quantity">Số lượng:</label>
+                        <input type="number" class="form-control" asp-for="Quantity">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="anticon anticon-plus-circle"></i>
+                        <span>Tạo</span>
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="table-responsive" id="records_table" name="records_table">
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>GetGoodByBarcode
+        function selectGoodChange(selected) {
+            var barcode = selected.value;
+            const url = "/api/apigoods/"+barcode;
+            $.ajax({
+                url: url,
+                datatype: "json",
+                type: "GET",
+                async: true,
+                success: function (results) {
+                    //$("#records_table").html("");
+                    //$("#records_table").html(results);
+                    document.getElementById("Price").value = results.price;
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const page = urlParams.get('page');
+            const documentid = document.getElementById("DocumentId").value;
+            $.ajax({
+                url: '/DocumentDetails/FindDocumentDetails',
+                datatype: "json",
+                type: "GET",
+                data: { page: page, documentid: documentid },
+                async: true,
+                success: function (results) {
+                    $("#records_table").html("");
+                    $("#records_table").html(results);
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+
+            $('#keyword').keyup(function () {
+                var strkeyword = $('#keyword').val();
+                $.ajax({
+                    url: '/DocumentDetails/FindDocumentDetails',
+                    datatype: "json",
+                    type: "GET",
+                    data: { search: strkeyword, page: 1, documentid: documentid },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+
+        });
+
+    </script>
+}

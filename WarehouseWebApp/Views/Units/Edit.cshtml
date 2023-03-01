@@ -1,0 +1,125 @@
+﻿@model WarehouseWebApp.Models.Unit
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2 class="header-title">Orders List</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Units" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-controller="Units" asp-action="Index">Danh sách đơn vị</a>
+            <span class="breadcrumb-item active">Sửa đơn vị</span>
+        </nav>
+    </div>
+</div>
+<div class="row m-b-30">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 text-right">
+        <form asp-action="Delete" asp-route-id="@Model.UnitId" method="post"
+              onclick="return confirm('Are you sure you want to delete this?')">
+            <button type="submit" class="btn btn-danger btn-tone m-r-5">Xóa</button>
+        </form>
+    </div>
+</div>
+<form asp-controller="Units" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+    </div>
+    <input type="hidden" asp-for="UnitId" />
+
+
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="CompanyId">Danh mục đơn vị</label>
+                        <select class="custom-select" asp-for="CompanyId" asp-items="ViewBag.Companies">
+                            <option value="" disabled selected>Chọn đơn vị</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="UnitCode">Mã Đơn Vị:</label>
+                        <input type="text" class="form-control" asp-for="UnitCode">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="UnitName">Tên đơn vị:</label>
+                        <input type="text" class="form-control" asp-for="UnitName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Phone">Số điện thoại:</label>
+                        <input type="text" class="form-control" asp-for="Phone">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Email">Email:</label>
+                        <input type="text" class="form-control" asp-for="Email">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Fax">Fax:</label>
+                        <input type="text" class="form-control" asp-for="Fax">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Address">Địa chỉ:</label>
+                        <input type="text" class="form-control" asp-for="Address">
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <div class="switch m-r-10">
+                            <input type="checkbox" name="Inventory" id="Inventory"
+                                   @(Model!=null&&Model.Inventory==true?"value=true checked": "value=false")
+                                   onclick="changeValueCheckBox()" />
+                            <label for="Inventory"></label>
+                        </div>
+                        <label>Inventory</label>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <div class="switch m-r-10">
+                            <input type="checkbox" name="Disabled" id="Disabled"
+                                   @(Model!=null&&Model.Disabled==true?"value=true checked": "value=false")
+                                   onclick="changeValueCheckBox()" />
+                            <label for="Disabled"></label>
+                        </div>
+                        <label>Disabled</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="anticon anticon-plus-circle"></i>
+                        <span>Lưu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts{
+
+
+    <script>
+        function changeValueCheckBox() {
+            var selected = [];
+            $('input[type=checkbox]').each(function () {
+                if ($(this).is(":checked")) {
+                    var checkBox = document.getElementById($(this).attr('id'));
+                    checkBox.value = "true";
+
+                }
+                else {
+                    var checkBox = document.getElementById($(this).attr('id'));
+                    checkBox.value = "false";
+                }
+            });
+        }
+
+    </script>
+}
+

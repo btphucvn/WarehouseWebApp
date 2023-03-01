@@ -1,0 +1,60 @@
+﻿@model WarehouseWebApp.Models.Company
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2 class="header-title">Orders List</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Companies" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="Companies" asp-action="Index">Danh sách công ty</a>
+            <span class="breadcrumb-item active">Tạo mới công ty</span>
+        </nav>
+    </div>
+</div>
+<form asp-controller="Companies" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+    </div>
+
+
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="CompanyCode">Mã công ty:</label>
+                        <input type="text" class="form-control" asp-for="CompanyCode">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="CompanyName">Tên công ty:</label>
+                        <input type="text" class="form-control" asp-for="CompanyName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Phone">Số điện thoại:</label>
+                        <input type="text" class="form-control" asp-for="Phone">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Email">Email:</label>
+                        <input type="text" class="form-control" asp-for="Email">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Fax">Fax:</label>
+                        <input type="text" class="form-control" asp-for="Fax">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Address">Địa chỉ:</label>
+                        <input type="text" class="form-control" asp-for="Address">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="anticon anticon-plus-circle"></i>
+                        <span>Tạo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
